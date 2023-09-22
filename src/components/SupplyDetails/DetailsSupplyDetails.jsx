@@ -68,7 +68,7 @@ function DetailsSupplyDetails () {
           <tbody>
             {buySuppliesDetails.map((detail, index) => {
               
-              const pdfUrl = `https://localhost:7262/api/BuySuppliesDetail/file/${detail.id}`
+              const pdfUrl = `https://senaonprinting.azurewebsites.net/api/BuySuppliesDetail/file/${detail.id}`
               return (
               <tr key={index} className='hover:bg-stone-100'>
                 <td className='border border-slate-400 text-center'>{detail.supply.name}</td>
