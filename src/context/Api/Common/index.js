@@ -23,6 +23,9 @@ const commonEndpointsApi = (entityName, entityUrl) => {
       getAllApproved: builder.query({
         query: () => `${entityUrl}/Approved`
       }),
+      getFileById: builder.query({
+        query: (id) => `${entityUrl}/file/${id}`
+      }),
       post: builder.mutation({
         query: (data) => ({
           url: `${entityUrl}`,
@@ -78,6 +81,7 @@ export const WarehauseApi = commonEndpointsApi('Warehause', 'warehause')
 export const ProviderApi = commonEndpointsApi('Provider', 'provider')
 export const SupplyApi = commonEndpointsApi('Supply', 'supply')
 export const BuySupplyApi = commonEndpointsApi('BuySupply', 'buy_supplies')
+export const BuySupplyDetailApi = commonEndpointsApi('BuySuppliesDetail', 'buySuppliesDetail')
 
 export const {
   useGetAllQuery: useGetAllSupplyCategoryQuery,
@@ -124,7 +128,8 @@ export const {
   useGetByIdQuery: useGetQuotationProvidersByIdQuery,
   usePostMutation: usePostQuotationProvidersMutation,
   usePutByIdMutation: usePutQuotationProvidersByIdMutation,
-  useDeleteByIdMutation: useDeleteQuotationProvidersByIdMutation
+  useDeleteByIdMutation: useDeleteQuotationProvidersByIdMutation,
+  useGetFileByIdMutation: useGetFileByQuotationProvidersMutation
 } = quotationProviders
 
 export const {
@@ -283,3 +288,7 @@ export const {
   usePutByIdMutation: usePutSupplyDetailsByIdMutation,
   useDeleteByIdMutation: useDeleteSupplyDetailsByIdMutation
 } = BuySupplyApi
+
+export const {
+  useGetFileByIdMutation: useGetFileByBuySupplyDetailsMutation
+} = BuySupplyDetailApi

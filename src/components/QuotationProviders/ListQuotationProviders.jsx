@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useTable, usePagination, useGlobalFilter } from 'react-table'
-import { useGetAllQuotationProvidersQuery } from '../../context/Api/Common'
+import { useGetAllQuotationProvidersQuery, useGetFileByQuotationProvidersMutation } from '../../context/Api/Common'
 import { ChangeStateButtonQuotationProviders } from './ChangeStatedQuotationProviders'
 import { CreateButtomQuotationProviders } from './CreateQuotationProviders'
 import { DetailsButtomQuotationProviders } from './DetailsQuotationProviders'
@@ -196,7 +196,7 @@ const ListQuotationProviders = () => {
                         ? row.cells[0].value(row.cells[0])
                         : row.cells[0].render('Cell')}
                     </td>
-                   <b> <a href={`https://senaonprinting.azurewebsites.net/api/QuotationProviders/file/${row.original.id}`} download >
+                   <b> <a href={`https://senaonprintingapi.azurewebsites.net/api/QuotationProviders/file/${row.original.id}`} download >
                        Descargar Cotización
                       </a></b>
                     <td {...row.cells[2].getCellProps()} className="px-4 py-3">

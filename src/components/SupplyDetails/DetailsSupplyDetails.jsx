@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useGetFileByBuySupplyDetailsMutation } from '../../context/Api/Common';
 import { openModal, setAction, setDetailsData, setWidth } from '../../context/Slices/Modal/ModalSlice'
 import { GrView } from 'react-icons/gr'
 import { BsQrCode } from "react-icons/bs";
@@ -68,7 +69,7 @@ function DetailsSupplyDetails () {
           <tbody>
             {buySuppliesDetails.map((detail, index) => {
               
-              const pdfUrl = `https://senaonprinting.azurewebsites.net/api/BuySuppliesDetail/file/${detail.id}`
+              const pdfUrl = `https://senaonprintingapi.azurewebsites.net/api/BuySuppliesDetail/file/${detail.id}`
               return (
               <tr key={index} className='hover:bg-stone-100'>
                 <td className='border border-slate-400 text-center'>{detail.supply.name}</td>
