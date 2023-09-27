@@ -8,7 +8,6 @@ import { DetailsButtomSupplyDetails } from './DetailsSupplyDetails'
 import { BsFillFileEarmarkBreakFill } from 'react-icons/bs'
 import { useReactToPrint } from 'react-to-print'
 import ReportSupplyDetails from './ReportSupplyDetails'
-import clientAxios from '../../config/clientAxios'
 
 const formatDate = (dateString, format = { year: 'numeric', month: 'long', day: 'numeric' }) => {
   if (dateString != null){
@@ -23,7 +22,6 @@ const formatDate = (dateString, format = { year: 'numeric', month: 'long', day: 
 
 const ListSupplyDetails = () => {
   const [loading, setLoading] = useState(true)
-  const [dataProvider, setDataProvider] = useState([])
   const tablePDF = useRef()
 
   const generatePDF = useReactToPrint({
@@ -35,6 +33,9 @@ const ListSupplyDetails = () => {
 
   // ? Este bloque de codigo hace que la pagina haga un refech al api para poder obtener los cambios hechos
   const { isAction } = useSelector((state) => state.modal)
+  useEffect(() => {
+    refetch()
+  }, [isAction])
 
   const columns = useMemo(() => [
     { Header: 'Lote', accessor: 'id' },
@@ -66,23 +67,6 @@ const ListSupplyDetails = () => {
 
   const data = useMemo(() => (dataApi || []), [dataApi])
 
-  useEffect(() => {
-    clientAxios('/Provider')
-      .then(response => {
-        setDataProvider(response.data)
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Error al obtener datos:', error)
-        setLoading(false)
-      })
-  }, [])
-
-  useEffect(() => {
-    refetch()
-  }, [isAction])
-  // ?
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -105,10 +89,6 @@ const ListSupplyDetails = () => {
   const { pageIndex, globalFilter } = state
 
   if (!dataApi) {
-    return <div>Cargando...</div>
-  }
-
-  if (loading) {
     return <div>Cargando...</div>
   }
 
