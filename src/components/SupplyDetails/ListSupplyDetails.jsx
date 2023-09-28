@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useTable, usePagination, useGlobalFilter } from 'react-table'
 import { useGetAllSupplyDetailsQuery } from '../../context/Api/Common'
@@ -21,7 +21,6 @@ const formatDate = (dateString, format = { year: 'numeric', month: 'long', day: 
 };
 
 const ListSupplyDetails = () => {
-  const [loading, setLoading] = useState(true)
   const tablePDF = useRef()
 
   const generatePDF = useReactToPrint({
@@ -33,6 +32,7 @@ const ListSupplyDetails = () => {
 
   // ? Este bloque de codigo hace que la pagina haga un refech al api para poder obtener los cambios hechos
   const { isAction } = useSelector((state) => state.modal)
+
   useEffect(() => {
     refetch()
   }, [isAction])
@@ -50,7 +50,14 @@ const ListSupplyDetails = () => {
     {
       Header: 'Costo Total',
       accessor: 'buySuppliesDetails',
-      Cell: ({ value }) => (`$ ${value.map((detail) => ( detail.supplyCost*detail.supplyQuantity )).reduce((a, b) => a + b, 0).toLocaleString('en-US')}`)
+      Cell: ({ value }) => {
+        if (Array.isArray(value)) {
+          return `$ ${value.map((detail) => (detail.supplyCost * detail.supplyQuantity)).reduce((a, b) => a + b, 0).toLocaleString('en-US')}`;
+        } else {
+          // Manejar el caso en que value no sea una matriz, por ejemplo, mostrar un mensaje de error o un valor predeterminado.
+          return 'Valor no válido';
+        }
+      }
     },
     {
       Header: 'Estado',

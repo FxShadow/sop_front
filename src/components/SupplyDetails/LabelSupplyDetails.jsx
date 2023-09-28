@@ -1,5 +1,17 @@
 import { format } from 'fecha';
 import QRCode from 'react-qr-code'
+
+const formatDate = (dateString, format = { year: 'numeric', month: 'long', day: 'numeric' }) => {
+  if (dateString != null){
+  const date = new Date(dateString);
+  const formattedDate = date.toLocaleDateString(undefined, format);
+
+  return formattedDate;
+}else {
+  return "Sin fecha"
+}
+};
+
 const LabelSupplyDetails = ({ detail }) => {
   const currentDate = new Date(Date.now());
   const formattedDate = format(currentDate, 'dddd D [de] MMMM [de] YYYY', 'es');
@@ -11,18 +23,12 @@ const LabelSupplyDetails = ({ detail }) => {
 console.log(detail)
   return (
     <>
-      <div className="my-6">
-        <div className="text-center">
-          <h1 className="font-black text-3xl">Informe compra de insumos</h1>
-          <p className="text-xl">Creado el día: {formattedDate}</p>
-        </div>
-      </div>
       <div className="container mx-auto w-1/3 rounded-lg border-4 border-orange-500 p-4">
         <div className="flex flex-col items-center">
           <QRCode value={pdfUrl} className="w-48 h-48 object-cover" />
           <button onClick={() => openPDF(pdfUrl)}></button>
           <div className="sticky top-0">
-            <h1 className="text-sm font-bold">NOMBRE DEL INSUMO</h1>
+            <h1 className="text-sm font-bold mt-5">Insumo</h1>
             <h2>{detail.supply.name}</h2>
             <div className="flex flex-wrap justify-center">
 
@@ -37,19 +43,20 @@ console.log(detail)
             </div>
             <h3 className="text-sm font-bold">Fecha de Vencimiento</h3>
             <div className="flex items-center">
-              <h2 className="text-base">{detail.expirationDate}</h2>
+              <h2 className="text-base">{formatDate(detail.expirationDate)}</h2>
             </div>
             <h2 className="text-sm font-bold">Palabra de Advertencia</h2>
             <div className="flex items-center">
-              <h2 className="text-base">{detail.supply.sortingWord === 1 ? 'PELIGRO' : 'ADVERTENCIA'}</h2>
+              <h2 className="text-base">{detail.supply.sortingWord === 1 ? 'Peligro' : 'Advertencia'}</h2>
             </div>
-            <h2 className="text-sm font-bold">CONSEJO DE PRUDENCIA</h2>
+            <h2 className="text-sm font-bold">Consejo de Prudencia</h2>
             <div className="flex items-center">
               <p>{detail.supply.advices}</p>
             </div>
           </div>
-          <div className="flex justify-between mt-4">
-            {/* Add code to display images */}
+          <div className='flex mt-1'>
+            <img className="mr-16" src="/public/img/LOGO_SENA.jpg" alt="" width={40} height={40}/>
+            <img className="ml-16" src="/public/img/LOGO_SENAONPRINTING.jpg" alt="" width={85} height={40}/>
           </div>
         </div>
       </div>

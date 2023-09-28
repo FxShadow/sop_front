@@ -3,7 +3,7 @@ import { useGetFileByBuySupplyDetailsMutation } from '../../context/Api/Common';
 import { openModal, setAction, setDetailsData, setWidth } from '../../context/Slices/Modal/ModalSlice'
 import { GrView } from 'react-icons/gr'
 import { BsQrCode } from "react-icons/bs";
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import LabelSupplyDetails from './LabelSupplyDetails'
 import { useReactToPrint } from 'react-to-print'
 import { BsFillFileEarmarkBreakFill } from 'react-icons/bs'
@@ -57,7 +57,7 @@ function DetailsSupplyDetails() {
               <th className='border-collapse border border-slate-400'>Precio</th>
               <th className='border-collapse border border-slate-400'>Cantidad</th>
               <th className='border-collapse border border-slate-400'>Subtotal</th>
-              <th className=''>Etiqueta</th>
+              <th className=''></th>
             </tr>
           </thead>
           <tbody>
@@ -82,17 +82,15 @@ function DetailsSupplyDetails() {
                       <div ref={tablePDFRef}>
                         <LabelSupplyDetails key={index} detail={detail} />
                       </div>
-                    </div>
-                    <div className="relative bg-white py-6 px-20 shadow-2xl mdm:py-6 mdm:px-8 mb-2">
+                    </div>                    
                       <button
                         className="flex items-center justify-center border border-gray-400 text-white bg-custom-blue hover:bg-custom-blue-light focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 gap-3"
                         onClick={generatePDF}
                         type="button"
                       >
-                        <BsFillFileEarmarkBreakFill />
+                        <BsQrCode />
                         Generar Etiqueta
                       </button>
-                    </div>
                   </td>
                 </tr>
               )

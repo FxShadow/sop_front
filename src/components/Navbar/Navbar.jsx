@@ -43,12 +43,12 @@ function Navbar() {
             <div className="flex items-center justify-start">
               <Link to={'/'} className="flex md:mr-24">
                 <img
-                  src="../public/img/LOGO_SENA.jpg"
+                  src="/public/img/LOGO_SENA.jpg"
                   className="h-12  mr-3"
                   alt="SENA Logo"
                 />
                 <img
-                  src="../public/img/LOGO_SENAONPRINTING.jpg"
+                  src="/public/img/LOGO_SENAONPRINTING.jpg"
                   className="h-12 mr-3"
                   alt="SENA Logo"
                 />
