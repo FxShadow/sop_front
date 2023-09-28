@@ -43,12 +43,12 @@ function Navbar() {
             <div className="flex items-center justify-start">
               <Link to={'/'} className="flex md:mr-24">
                 <img
-                  src="/public/img/LOGO_SENA.jpg"
+                  src="https://cs7100320020914ea8a.blob.core.windows.net/sopstorage/LOGO_SENA.jpg?sp=r&st=2023-09-28T02:05:57Z&se=2100-09-28T10:05:57Z&spr=https&sv=2022-11-02&sr=b&sig=DqfQ2kWWKlOcBaF%2B%2F%2FAs7Xn0U35%2FNbAjfgm%2BabALbj8%3D"
                   className="h-12  mr-3"
                   alt="SENA Logo"
                 />
                 <img
-                  src="/public/img/LOGO_SENAONPRINTING.jpg"
+                  src="https://cs7100320020914ea8a.blob.core.windows.net/sopstorage/LOGO_SENAONPRINTING.jpg?sp=r&st=2023-09-28T02:03:30Z&se=2100-02-01T10:03:30Z&spr=https&sv=2022-11-02&sr=b&sig=zutUmXLt4eoU7%2BwWVemDcaE%2F%2B6mwXn2gyBkD7N7EtG8%3D"
                   className="h-12 mr-3"
                   alt="SENA Logo"
                 />
@@ -56,7 +56,6 @@ function Navbar() {
             </div>
             <div className="flex items-center">
               <div className="flex items-center ml-3">
-                
                 <div className="ml-2">
                   <p className="text-sm font-medium text-gray-900 truncate">
                     {user_email}

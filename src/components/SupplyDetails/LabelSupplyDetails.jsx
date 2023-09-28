@@ -55,8 +55,8 @@ console.log(detail)
             </div>
           </div>
           <div className='flex mt-1'>
-            <img className="mr-16" src="/public/img/LOGO_SENA.jpg" alt="" width={40} height={40}/>
-            <img className="ml-16" src="/public/img/LOGO_SENAONPRINTING.jpg" alt="" width={85} height={40}/>
+            <img className="mr-16" src="https://cs7100320020914ea8a.blob.core.windows.net/sopstorage/LOGO_SENA.jpg?sp=r&st=2023-09-28T02:05:57Z&se=2100-09-28T10:05:57Z&spr=https&sv=2022-11-02&sr=b&sig=DqfQ2kWWKlOcBaF%2B%2F%2FAs7Xn0U35%2FNbAjfgm%2BabALbj8%3D" alt="" width={40} height={40}/>
+            <img className="ml-16" src="https://cs7100320020914ea8a.blob.core.windows.net/sopstorage/LOGO_SENAONPRINTING.jpg?sp=r&st=2023-09-28T02:03:30Z&se=2100-02-01T10:03:30Z&spr=https&sv=2022-11-02&sr=b&sig=zutUmXLt4eoU7%2BwWVemDcaE%2F%2B6mwXn2gyBkD7N7EtG8%3D" alt="" width={85} height={40}/>
           </div>
         </div>
       </div>
