@@ -15,7 +15,19 @@ import { useReactToPrint } from 'react-to-print'
 import { BsFillFileEarmarkPdfFill } from 'react-icons/bs'
 import Reportquotation from './ReportQuotation'
 import Spinner from '../Spinner/Spinner'
+import { format } from 'date-fns';
 import Error from '../Error/Error'
+
+const formatDate = (dateString, formatDate = { year: 'numeric', month: 'long', day: 'numeric' }) => {
+  if (dateString != null){
+  const date = new Date(dateString);
+  const formattedDate = format(date, formatDate);
+
+  return formattedDate;
+}else {
+  return "Sin fecha"
+}
+};
 
 const ListQuotation = () => {
   const tablePDF = useRef()
@@ -39,8 +51,8 @@ const ListQuotation = () => {
   const columns = useMemo(
     () => [
       { Header: 'Código', accessor: 'id' },
-      { Header: 'Fecha de orden', accessor: 'orderDate' },
-      { Header: 'Fecha de Entrega', accessor: 'deliverDate' },
+      { Header: 'Fecha de orden', accessor: 'orderDate', Cell: ({ value }) => (formatDate(value,'dd MMM yyyy')) },
+      { Header: 'Fecha de Entrega', accessor: 'deliverDate', Cell: ({ value }) => (formatDate(value,'dd MMM yyyy')) },
       { Header: 'Cliente', accessor: 'client.name' },
       {
         Header: 'Estado Cotizacion',

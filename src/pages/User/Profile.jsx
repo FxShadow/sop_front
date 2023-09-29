@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from 'react-toastify'
 import clientAxios from '../../config/clientAxios'
+import { useGetUserByIdQuery } from '../../context/Api/Common'
 
 
 
@@ -59,13 +61,16 @@ const EditProfileForm  = () => {
   const [typeDocumentOptions, setTypeDocumentOptions] = useState([]);
   const [userInfo, setUserInfo] = useState({ id: "", names: "", surnames: "", typeDocumentId: "", documentNumber: "", phone: "", address: "" });
 
-  const user_id = 1;
+  const { data: dataApi, refetch } = useGetUserByIdQuery()
 
   const fetchOptions = () => {
     getTypeDocuments().then((options) => {
       setTypeDocumentOptions(options);
     });
   };
+
+  let { state } = useLocation();
+  const user_id = state.user_id
 
   useEffect(() => {
     fetchOptions();

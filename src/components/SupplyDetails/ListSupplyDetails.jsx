@@ -7,12 +7,13 @@ import { CreateButtomSupplyDetails } from './CreateSupplyDetails'
 import { DetailsButtomSupplyDetails } from './DetailsSupplyDetails'
 import { BsFillFileEarmarkBreakFill } from 'react-icons/bs'
 import { useReactToPrint } from 'react-to-print'
+import { format } from 'date-fns';
 import ReportSupplyDetails from './ReportSupplyDetails'
 
-const formatDate = (dateString, format = { year: 'numeric', month: 'long', day: 'numeric' }) => {
+const formatDate = (dateString, formatDate = { year: 'numeric', month: 'long', day: 'numeric' }) => {
   if (dateString != null){
   const date = new Date(dateString);
-  const formattedDate = date.toLocaleDateString(undefined, format);
+  const formattedDate = format(date, formatDate);
 
   return formattedDate;
 }else {
@@ -41,7 +42,7 @@ const ListSupplyDetails = () => {
     { Header: 'Lote', accessor: 'id' },
     { Header: 'Descripción', accessor: 'description' },
     // { Header: 'Costo insumo', accessor: 'averageCost' },
-    { Header: 'Fecha de compra', accessor: 'entryDate', Cell: ({ value }) => (formatDate(value))},
+    { Header: 'Fecha de compra', accessor: 'entryDate', Cell: ({ value }) => (formatDate(value,'dd MMM yyyy'))},
     // { Header: 'Cantidad actual', accessor: 'actualQuantity' },
     {
       Header: 'Proveedor',

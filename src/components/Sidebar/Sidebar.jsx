@@ -507,13 +507,13 @@ function Sidebar() {
               }
             </ul>
           </div>
-          <button
-            type="button"
-            onClick={handleProfile}
-            className="mt-4 w-full p-3 text-gray-900 hover:text-white rounded-lg hover:bg-custom-blue transition duration-75"
+          <Link
+            to={'/perfil'}
+            state={{ user_id: decodedToken.id }}
+            className={`flex items-center p-3 text-gray-900 hover:text-white rounded-lg hover:bg-custom-blue ${path === '/perfil' ? 'bg-custom-blue text-white' : null}`}
           >
-            Perfil
-          </button>
+            <span className="ml-3 text-center">Mi Perfil</span>
+          </Link>
           <button
             type="button"
             onClick={handleLogout}
